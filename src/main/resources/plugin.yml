@@ -1,0 +1,9 @@
+name: HoverChat
+description: Custom hover chat messages.
+version: 1.0
+author: uForge
+main: net.uforge.mc.pl.hoverchat.HoverChat
+
+commands:
+  hoverchat:
+    description: Main command of plugin.

@@ -1,0 +1,10 @@
+# HoverChat v1.0
+# uForge © 2021
+
+# WARNING: This plugin effects your chat formatting system!
+
+message-format: '&a%iridiumskyblock_island_level% &8| {DISPLAYNAME} &8» &7{MESSAGE}'
+date-format: 'dd-MM-yyyy HH:mm:ss'
+hover-text:
+  - "&bSent: &e{DATE}"
+  - "&auForge :)"
