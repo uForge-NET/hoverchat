@@ -1,6 +1,7 @@
 package net.uforge.mc.pl.hoverchat.events;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -31,24 +32,27 @@ public class ChatEvents implements Listener {
         config_messageFormat = config_messageFormat.replace("{DISPLAYNAME}", player.getDisplayName()).replace("{MESSAGE}", event.getMessage());
         config_messageFormat = PlaceholderAPI.setPlaceholders(player, config_messageFormat);
 
-        LocalDateTime date = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(Config.getString("dateFormat"));
-        String dateText = date.format(dateTimeFormatter);
-
         TextComponent msg = new TextComponent(config_messageFormat);
-        String hoverText = "";
-        List<String> hoverTextList = Config.getStringList("hoverMessage.hoverText");
-        int i = 0;
-        for(String hoverLore : hoverTextList) {
-            i++;
-            hoverLore = hoverLore.replace("{DATE}", dateText);
-            if(i == hoverTextList.size()) {
-                hoverText += PlaceholderAPI.setPlaceholders(player, u.colorize(hoverLore));
-            } else {
-                hoverText += PlaceholderAPI.setPlaceholders(player, u.colorize(hoverLore)) + "\n";
+
+        if(Config.isHoverMessageActive) {
+            LocalDateTime date = LocalDateTime.now();
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(Config.getString("dateFormat"));
+            String dateText = date.format(dateTimeFormatter);
+            String hoverText = "";
+            List<String> hoverTextList = Config.getStringList("hoverMessage.hoverText");
+            int i = 0;
+            for(String hoverLore : hoverTextList) {
+                i++;
+                hoverLore = hoverLore.replace("{DATE}", dateText);
+                if(i == hoverTextList.size()) {
+                    hoverText += PlaceholderAPI.setPlaceholders(player, u.colorize(hoverLore));
+                } else {
+                    hoverText += PlaceholderAPI.setPlaceholders(player, u.colorize(hoverLore)) + "\n";
+                }
             }
+            msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hoverText).create()));
         }
-        msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hoverText).create()));
+
         core.getServer().spigot().broadcast(msg);
     }
 
