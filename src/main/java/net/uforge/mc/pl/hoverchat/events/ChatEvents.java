@@ -28,7 +28,7 @@ public class ChatEvents implements Listener {
         event.setCancelled(true);
         Player player = event.getPlayer();
 
-        String config_messageFormat = Config.getString("chatFormat");
+        String config_messageFormat = Config.getString("global.chatFormat");
         config_messageFormat = config_messageFormat.replace("{DISPLAYNAME}", player.getDisplayName()).replace("{MESSAGE}", event.getMessage());
         config_messageFormat = PlaceholderAPI.setPlaceholders(player, config_messageFormat);
 
@@ -36,7 +36,7 @@ public class ChatEvents implements Listener {
 
         if(Config.isHoverMessageActive) {
             LocalDateTime date = LocalDateTime.now();
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(Config.getString("dateFormat"));
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(Config.getString("global.dateFormat"));
             String dateText = date.format(dateTimeFormatter);
             String hoverText = "";
             List<String> hoverTextList = Config.getStringList("hoverMessage.hoverText");

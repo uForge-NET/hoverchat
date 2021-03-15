@@ -1,13 +1,12 @@
 # HoverChat v1.0
 # uForge © 2021
 
-# Global
-chatFormat: '&a%iridiumskyblock_island_level% &8| {DISPLAYNAME} &8» &7{MESSAGE}'
-dateFormat: 'dd-MM-yyyy HH:mm:ss'
+global:
+  chatFormat: '&a%iridiumskyblock_island_level% &8| {DISPLAYNAME} &8» &7{MESSAGE}'
+  dateFormat: 'dd-MM-yyyy HH:mm:ss'
 
-# Hover Message
-isHoverMessageActive: true
 hoverMessage:
+  active: true
   hoverText:
     - "&bSent: &e{DATE}"
     - "&auForge :)"

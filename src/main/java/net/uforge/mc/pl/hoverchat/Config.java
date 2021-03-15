@@ -21,7 +21,7 @@ public class Config {
     }
 
     private static void setConfigVariables() {
-        isHoverMessageActive = core.getConfig().getBoolean("isHoverMessageActive");
+        isHoverMessageActive = getBoolean("hoverMessage.active");
     }
 
     public static String getString(String key) {
