@@ -4,6 +4,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.uforge.mc.pl.hoverchat.Config;
 import net.uforge.mc.pl.hoverchat.HoverChat;
 import net.uforge.mc.pl.hoverchat.utils.Utils;
 import org.bukkit.Bukkit;
@@ -26,17 +27,17 @@ public class ChatEvents implements Listener {
         event.setCancelled(true);
         Player player = event.getPlayer();
 
-        String config_messageFormat = core.getConfig().getString("message-format");
+        String config_messageFormat = Config.getString("chatFormat");
         config_messageFormat = config_messageFormat.replace("{DISPLAYNAME}", player.getDisplayName()).replace("{MESSAGE}", event.getMessage());
         config_messageFormat = PlaceholderAPI.setPlaceholders(player, config_messageFormat);
 
         LocalDateTime date = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(core.getConfig().getString("date-format"));
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(Config.getString("dateFormat"));
         String dateText = date.format(dateTimeFormatter);
 
         TextComponent msg = new TextComponent(config_messageFormat);
         String hoverText = "";
-        List<String> hoverTextList = core.getConfig().getStringList("hover-text");
+        List<String> hoverTextList = Config.getStringList("hoverMessage.hoverText");
         int i = 0;
         for(String hoverLore : hoverTextList) {
             i++;

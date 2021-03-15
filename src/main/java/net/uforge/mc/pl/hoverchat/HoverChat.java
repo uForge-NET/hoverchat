@@ -16,7 +16,7 @@ public class HoverChat extends JavaPlugin {
     public void onEnable() {
         registerEvents();
         registerCommands();
-        loadConfig();
+        Config.load();
 
         u.sendConsole(u.INFO, "Plugin has been activated!");
         u.sendConsole(u.INFO, "uForge © 2021");
@@ -40,11 +40,6 @@ public class HoverChat extends JavaPlugin {
         handler.register("hoverchat", new HOVERCHAT());
         handler.register("reload", new ReloadConfig());
         getCommand("hoverchat").setExecutor(handler);
-    }
-
-    private void loadConfig() {
-        getConfig().options().copyDefaults(true);
-        saveConfig();
     }
 
 }
