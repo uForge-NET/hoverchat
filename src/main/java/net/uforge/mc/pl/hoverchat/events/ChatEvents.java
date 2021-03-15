@@ -6,6 +6,7 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.uforge.mc.pl.hoverchat.HoverChat;
 import net.uforge.mc.pl.hoverchat.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -47,7 +48,7 @@ public class ChatEvents implements Listener {
             }
         }
         msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hoverText).create()));
-        player.spigot().sendMessage(msg);
+        core.getServer().spigot().broadcast(msg);
     }
 
 }
