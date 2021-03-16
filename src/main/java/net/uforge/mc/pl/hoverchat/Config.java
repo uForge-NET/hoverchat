@@ -18,6 +18,7 @@ public class Config {
 
     public static void reload() {
         core.reloadConfig();
+        setConfigVariables();
     }
 
     private static void setConfigVariables() {
